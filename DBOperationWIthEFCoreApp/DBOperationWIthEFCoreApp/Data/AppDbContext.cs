@@ -30,5 +30,6 @@ namespace DBOperationWIthEFCoreApp.Data
 
         public DbSet<CurrencyType> Currencies { get; set; }
         public DbSet <BookPrice> Prices { get; set; }
+        public DbSet <Author> Authors { get; set; }
     }
 }

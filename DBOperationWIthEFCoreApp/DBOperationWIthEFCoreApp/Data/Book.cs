@@ -12,5 +12,8 @@
         public int LanguageId { get; set; }
         public Language? LanguageName { get; set; }
 
+        public int? AuthorId { get; set; }
+        public Author? Author { get; set; }
+
     }
 }

@@ -22,6 +22,27 @@ namespace DBOperationWIthEFCoreApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DBOperationWIthEFCoreApp.Data.Author", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("DBOperationWIthEFCoreApp.Data.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +50,9 @@ namespace DBOperationWIthEFCoreApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateddOn")
                         .HasColumnType("datetime2");
@@ -51,6 +75,8 @@ namespace DBOperationWIthEFCoreApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("LanguageId");
 
@@ -182,11 +208,17 @@ namespace DBOperationWIthEFCoreApp.Migrations
 
             modelBuilder.Entity("DBOperationWIthEFCoreApp.Data.Book", b =>
                 {
+                    b.HasOne("DBOperationWIthEFCoreApp.Data.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
                     b.HasOne("DBOperationWIthEFCoreApp.Data.Language", "LanguageName")
                         .WithMany()
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Author");
 
                     b.Navigation("LanguageName");
                 });
