@@ -184,7 +184,7 @@ namespace DBOperationWIthEFCoreApp.Controllers
         [HttpGet("UpdateSQLOnDBBooks")]
         public async Task<IActionResult> UpdateSQLOnDBBooks()
         {
-            await appDbContext.Database.ExecuteSqlAsync($"Update Books set Id = 1 where Title = {"Rushi's book"}");
+            await appDbContext.Database.ExecuteSqlAsync($"Update Books set Description = {"updated using EF"} where Title = {"Rushi's book"}");
                 return Ok();
         }
     }
