@@ -10,10 +10,10 @@
         public DateTime CreateddOn { get; set; }
 
         public int LanguageId { get; set; }
-        public Language? LanguageName { get; set; }
+        //public Language? LanguageName { get; set; }
 
         public int? AuthorId { get; set; }
-        public Author? Author { get; set; }
+        public virtual Author? Author { get; set; }
 
     }
 }

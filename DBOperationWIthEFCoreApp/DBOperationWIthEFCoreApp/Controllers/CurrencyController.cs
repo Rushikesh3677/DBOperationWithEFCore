@@ -27,7 +27,7 @@ namespace DBOperationWIthEFCoreApp.Controllers
         [HttpGet("AllLanguages")]
         public async Task<IActionResult> GetAllLanguages()
         {
-            var result = await this.appDbContext.Languages.ToListAsync();
+            var result = await this.appDbContext.Languages.AsNoTracking().ToListAsync();
             return Ok(result);
         }
 
